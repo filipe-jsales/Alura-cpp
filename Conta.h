@@ -1,6 +1,10 @@
 #ifndef CONTA_H
 #define CONTA_H
 #include <string>
+#include <iostream>
+#include <string.h>
+using std::cout;
+using std::string;
 
 class Conta
 {
@@ -8,19 +12,27 @@ public:
     //constructors & destructors
     Conta();
     ~Conta();
+    Conta(string , string , string );
     
     //public methods
-    void sacar( float valorASacar);
-    void depositar(float valorADepositar);
-    void mostrarSaldo();
+    float getSaldo();
+    void setSaldo(float );
+    string getNumero();
+    void setNumero(string );
+    string getCpfTitular();
+    void setCpfTitular(string);
+    void sacar( float );
+    void depositar(float );
     void toString();
+    void validarNome();
 
 private:
-	float saldo;   
-    std::string numero;
-    std::string nomeTitular;
-	std::string cpfTitular;
-
+	float saldo = 0.0;   
+    string numero ;
+    string nomeTitular;
+	string cpfTitular ;
+    static int numeroDeContas;
+    
 
 };
 

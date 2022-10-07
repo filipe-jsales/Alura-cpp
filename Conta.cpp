@@ -1,18 +1,58 @@
 #include <iostream>
 #include "Conta.h"
 #include <string>
+#include <string.h>
+#include <iostream>
+using std::cout;
+using std::string;
 
-Conta::Conta()
+Conta::Conta( )
+:numero("0"), nomeTitular("sem nome"), cpfTitular("sem cpf"), saldo(0.0)
 {
-    saldo = 0.0;
-    this->numero = "1";
-    this->cpfTitular = "11111111111";
-    this->nomeTitular = "Sem nome";
+    numeroDeContas++;
+}
+
+Conta::Conta(string numero, string nomeTitular, string cpfTitular)
+: saldo(0.0), nomeTitular(nomeTitular), cpfTitular(cpfTitular)
+{
+
+    numeroDeContas++;
 }
 
 Conta::~Conta()
 {
     //destructor
+    numeroDeContas--;
+}
+
+float Conta::getSaldo()
+{
+    return this->saldo;
+}
+
+void Conta::setSaldo(float saldo)
+{
+    this->saldo = saldo;
+}
+
+string Conta::getNumero()
+{
+    return this->numero;
+}
+
+void Conta::setNumero(string numero)
+{
+    this->numero = numero;
+}
+
+string Conta::getCpfTitular()
+{
+    return this->cpfTitular;
+}
+
+void Conta::setCpfTitular(string cpfTitular)
+{
+    this->cpfTitular = cpfTitular;
 }
 
 void Conta::sacar(float valorASacar)
@@ -24,15 +64,19 @@ void Conta::depositar(float valorADepositar)
     this->saldo+=valorADepositar;
 }
 
-void Conta::mostrarSaldo() 
-{
-    std::cout << "\nSaldo: " << this->saldo;
-}
-
 void Conta::toString()
 {
-    std::cout << "Saldo: " << this->saldo << "\n";
-    std::cout << "cpfTitular: " << this->cpfTitular<< "\n";
-    std::cout << "nomeTitular: " << this->nomeTitular<< "\n";
-    std::cout << "numero: " << this->numero<< "\n";
+    cout << "Saldo: " << this->saldo << "\n";
+    cout << "cpfTitular: " << this->cpfTitular<< "\n";
+    cout << "nomeTitular: " << this->nomeTitular<< "\n";
+    cout << "numero: " << this->numero<< "\n";
+}
+
+void Conta::validarNome()
+{
+    if (this->nomeTitular.size() < 5)
+    {
+        cout << "Nome muito curto\n";
+        exit(-1);
+    }
 }
